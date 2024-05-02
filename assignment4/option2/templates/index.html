@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8b0000;
+            color: #ffffff; 
+            display: flex;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #4d4d4d;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Temperature Converter</h2>
+        <form action="{{ url_for('converter') }}" method="post">
+            <label for="fahrenheit">Enter degrees Fahrenheit:</label>
+            <input type="text" id="fahrenheit" name="fahrenheit" required>
+            <label for="css_file">Select CSS file:</label>
+            <select id="css_file" name="css_file">
+                <option value="style.css">Style 1</option>
+                <option value="altstyle.css">Style 2</option>
+            </select>
+            <button type="submit">Convert</button>
+        </form>
+    </div>
+</body>
+</html>

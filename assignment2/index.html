@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="author" content="Phil Barello" />
+  <title>Assignment 2</title>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="scripts/slidy.css" /> <!-- http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css -->
+  <script src="scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script> <!-- http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js-->
+  <script src="scripts/jquery-3.3.1.min.js"
+    charset="utf-8" type="text/javascript"></script> <!-- https://code.jquery.com/jquery-3.3.1.min.js -->
+  <script type="text/javascript" src="scripts/qrcode.js"></script>
+</head>
+
+<style>
+
+  /* two-colomn layout */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .right-side-image {
+    float: right;
+    width: 300px;
+    border: 0px solid #004480;
+    padding: 10px;
+  }
+
+  /* global properties to apply to all images */
+  .img {
+    float: left;
+  }
+
+  /* qrcode generator image size */
+  #qrcode {
+    width:160px;
+    height:160px;
+    margin-top:15px;
+  }
+
+  /* email link */
+  a.email:link {color:#eeff00;}
+  a.email:hover {color:#ff00ee; background:#66ff66;}
+
+  .portfolio-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: fixed;  /* Makes the button fixed at a specific location */
+    top: 0;           /* Aligns the button to the top of the viewport */
+    left: 0;          /* Aligns the button to the left of the viewport */
+    z-index: 1000;    /* Ensures the button stays on top of other elements */
+}
+
+.portfolio-btn:hover {
+    background-color: #0056b3;
+}
+</style>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Presentation <br><font color = "#000080"> Assignment 2</font></h1>
+  <p class="author">Brianna Lopez</p>
+  <p class="date">Computer Science Student <br><font color = "#8080FF" style="text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Southern Connecticut State University</font></p>
+  <button id="view-fullscreen">*</button>
+  <button class="portfolio-btn" onclick="location.href='../index.html'">CSC543 Portfolio</button>
+  <script type="text/javascript">
+    (function () {
+        var viewFullScreen = document.getElementById("view-fullscreen");
+        if (viewFullScreen) {
+            viewFullScreen.addEventListener("click", function () {
+                var docElm = document.documentElement;
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen();
+                }
+                else if (docElm.msRequestFullscreen) {
+                    docElm = document.body; //overwrite the element (for IE)
+                    docElm.msRequestFullscreen();
+                }
+                else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen();
+                }
+                else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen();
+                }
+            }, false);
+        }
+
+        var cancelFullScreen = document.getElementById("cancel-fullscreen");
+        if (cancelFullScreen) {
+            cancelFullScreen.addEventListener("click", function () {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                }
+                else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+            }, false);
+        }
+
+        var fullscreenState = document.getElementById("fullscreen-state");
+        if (fullscreenState) {
+            document.addEventListener("fullscreenchange", function () {
+                fullscreenState.innerHTML = (document.fullscreenElement)? "" : "not ";
+            }, false);
+
+            document.addEventListener("msfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.msFullscreenElement)? "" : "not ";
+            }, false);
+
+            document.addEventListener("mozfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.mozFullScreen)? "" : "not ";
+            }, false);
+
+            document.addEventListener("webkitfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.webkitIsFullScreen)? "" : "not ";
+            }, false);
+        }
+
+    })();
+    </script>
+</div>
+
+<div class="section slide level1" id="alternatives">
+  <h1>Information:</h1>
+  <ol class="incremental" style="list-style-type: decimal">
+  <p>To organize my data I looked at two categories:</p>
+  <li>Development tools that were addressed as known.</li>
+  <li>Development tools that will be used to complete the CSC543 course. This includes tools that people stated they would like to learn.</li>
+  <p>I then made visuals for the different categories to show the popularity of these tools.</p>
+  </ol></li>
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Known Tools:</h1>
+  <ul class="incremental">
+  <h2>Code Editors:</h2>
+  <li>VS Code - 6 mentions</li>
+  <li>Atom - 1 mention</li>
+  <li>Notepad++ - 1 mention</li>
+  <li>BlueJ - 1 mention</li>
+  <li>Pycharm - 1 mention</li>
+  <li>Intellij IDEA - 1 mention</li>
+  <li>BBEdit - 1 mention</li>
+  <li>Dreamweaver - 1 mention</li>
+  <img src="images/KnownCodeEditors.png" alt="Known Code Editors">
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Known Tools:</h1>
+  <ul class="incremental">
+  <h2>Programming Languages:</h2>
+  <li>Python - 8 mentions</li>
+  <li>HTML - 13 mention</li>
+  <li>Javascript - 11 mention</li>
+  <li>CSS - 12 mention</li>
+  <li>NodeJS - 3 mention</li>
+  <li>SQL - 2 mention</li>
+  <li>NoSQL - 1 mention</li>
+  <li>C# - 1 mention</li>
+  <li>TypeScript - 2 mention</li>
+  <li>Java - 1 mention</li>
+  <li>PHP - 5 mention</li>
+  <li>Ruby - 1 mention</li>
+  <li>Rust - 1 mention</li>
+  <li>Go - 1 mention</li>
+  <li>Powershell - 1 mention</li>
+  <img src="images/KnownProgrammingLanguages.png" alt="Known Programming Languages">
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Known Tools:</h1>
+  <ul class="incremental">
+  <h2>Frameworks:</h2>
+  <li>Selenium - 1 mentions</li>
+  <li>Cypress - 1 mention</li>
+  <li>Vue - 1 mention</li>
+  <li>Express - 1 mention</li>
+  <li>Django - 1 mention</li>
+  <li>Rails - 1 mention</li>
+  <li>React - 4 mention</li>
+  <li>Angular - 2 mention</li>
+  <li>Next.js - 1 mention</li>
+  <li>.NET Core - 1 mention</li>
+  <li>Flask - 5 mention</li>
+  <img src="images/KnownFrameworks.png" alt="Known Frameworks">
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Known Tools:</h1>
+  <ul class="incremental">
+  <h2>Data Sources:</h2>
+  <li>MySQL - 6 mentions</li>
+  <li>MariaDB - 2 mention</li>
+  <li>SQL - 2 mention</li>
+  <li>NoSQL - 1 mention</li>
+  <li>SQLAlchemy - 2 mention</li>
+  <img src="images/KnownDataSources.png" alt="Known Data Sources">
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Known Tools:</h1>
+  <ul class="incremental">
+  <h2>File Tranfer Utilities:</h2>
+  <li>Filezilla - 5 mentions</li>
+  <br>
+  <h2>Web Browsers:</h2>
+  <li>Google Chrome - 2 mention</li>
+  <li>Safari - 1 mention</li>
+  <br>
+  <h2>Other Tools:</h2>
+  <li>Git - 1 mention</li>
+  <li>GitHub - 1 mention</li>
+  <li>Adobe Tools - 1 mention</li>
+  <img src="images/FWO-Known.png" alt="Known F.WB.OT">
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Tools required for course completion / Tools of interest for learning</h1>
+  <ul class="incremental">
+  <h2>Code Editors:</h2>
+  <li>VS Code - 17 mentions</li>
+  <li>Notepad++ - 3 mention</li>
+
+  <h4>Advantages / Challenges with these code editors: </h4>
+  <p>Vs Code:</p>
+  <li>Advantages: Versatile, Productive, Community</li>
+  <li>Challenges: Resource-Intensive, Learning Curve</li>
+  <h4>Preferences:</h4>
+  <li>Like: Many people enjoy the versatility and all of the features that VS Code has.</li>
+  <li>Avoid: Some may avoid it if they cant run it effectively or understand how to use it.</li>
+  <h4>Personal Experience:</h4>
+  <li>I personally use VS Code, I use it for all of my projects, once I was able to learn how everything functions I find 
+    it to be my most essential tool.
+  </li>
+
+  <p>Note++:</p>
+  <li>Advantages: Lightweight, Simple, Extensible</li>
+  <li>Challenges: Limted, Windows-Only</li>
+  <h4>Preferences:</h4>
+  <li>Like: Lightweight and simple.</li>
+  <li>Avoid: Some avoid for more complex projects.</li>
+  <h4>Personal Experience:</h4>
+  <li>I have not personally used this but I have heard of it.</li>
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Tools required for course completion / Tools of interest for learning</h1>
+  <ul class="incremental">
+  <h2>Programming Languages:</h2>
+  <li>Python - 2 mentions</li>
+  <li>HTML - 4 mention</li>
+  <li>Javascript - 5 mention</li>
+  <li>CSS - 3 mention</li>
+  <li>SQL - 1 mention</li>
+  <li>NoSQL - 1 mention</li>
+  <li>C# - 1 mention</li>
+  <li>TypeScript - 1 mention</li>
+  <li>Java - 1 mention</li>
+  <li>PHP - 1 mention</li>
+  <li>Ruby - 1 mention</li>
+
+  <p>Python:</p>
+  <li>Advantages: Easy to learn, Readable, Versatile</li>
+  <li>Challenges: None to mind</li>
+<h4>Preferences:</h4>
+  <li>Like: Easy to pick up and learn, good entry level programming language.</li>
+  <li>Avoid: Not the best for Mobile Development</li>
+  <h4>Personal Experience: </h4>
+  <li>I have used python for multiple projects, I enjoy the simple and clean syntax. I recommend this language for anyone.</li>
+
+  <p>HTML:</p>
+  <li>Advantages: Simple for Web development, easy to learn</li>
+  <li>Challenges: Limited Functionality</li>
+  <h4>Preferences:</h4>
+  <li>Like: People like the simplicity for web development. Anyone can learn this quickly and create web pages. </li>
+  <li>Avoid: Some may prefer to use templates, there is limited functionality.</li>
+  <h4>Personal Experience:</h4>
+  <li>I have used HTML in every web development project I have worked on.
+    I find it as an essential tool and highly recommend to others.</li>
+
+  <p>JavaScript:</p>
+  <li>Advantages: Widespread use, dynamic</li>
+  <li>Challenges: Browser dependent</li>
+<h4>Preferences:</h4>
+  <li>Like: Enables interactive webpages.</li>
+  <li>Avoid:Inconsistent browser compatibility.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have personally enjoyed using javascript, I use it to provide functionality to my
+    web pages, making them more interactive. It can be harder than python to learn but I think its worth learning.</li>
+
+  <p>CSS:</p>
+  <li>Advantages: Styling in web design</li>
+  <li>Challenges: Limited Logic, a bit confusing at first</li>
+<h4>Preferences:</h4>
+  <li>Like: Used to style web pages very useful to make a visually engaging web page.</li>
+  <li>Avoid: A lot of lines very quickly and limited programming logic.</li>
+  <h4>Personal Experience:</h4>
+  <li>I like working on css because I think that a webpages aesthetic
+    keeps peoples attention to your webpage.</li>
+
+  <p>SQL:</p>
+  <li>Advantages: Powerful Querying</li>
+  <li>Challenges: Complexity</li>
+<h4>Preferences:</h4>
+  <li>Like: Powerful database tool.</li>
+  <li>Avoid:Complex for beginners.</li>
+  <h4>Personal Experience:</h4>
+  <li> Important database tool, difficult at times but worth learning.</li>
+
+  <p>NoSQL:</p>
+  <li>Advantages: Flexible, Scalable</li>
+  <li>Challenges: Limited transaction support</li>
+<h4>Preferences:</h4>
+  <li>Like: Flexible data modeling</li>
+  <li>Avoid: Limited support for complex queryng.</li>
+  <h4>Personal Experience:</h4>
+  <li> I have never personally used this.</li>
+
+  <p>C#:</p>
+  <li>Advantages: Windows app development </li>
+  <li>Challenges: Limited cross-platform</li>
+<h4>Preferences:</h4>
+  <li>Like: Strongly-typed, good for windows</li>
+  <li>Avoid: Limited cross-platform support</li>
+  <h4>Personal Experience: </h4>
+  <li>I have not personally used C#, it is a language I am interested in learning.</li>
+
+  <p>TypeScript:</p>
+  <li>Advantages: Type Checking </li>
+  <li>Challenges: Learning Curve</li>
+<h4>Preferences:</h4>
+  <li>Like: Adds static typing to JavaScript</li>
+  <li>Avoid: Initial learning curve</li>
+  <h4>Personal Experience: </h4>
+  <li>Not familiar with this language. I am open to learning this.</li>
+
+  <p>Java:</p>
+  <li>Advantages: Potability, Versatile </li>
+  <li>Challenges: Verbosity</li>
+<h4>Preferences:</h4>
+  <li>Like: Protability across platform</li>
+  <li>Avoid: More boilerplate code.</li>
+  <h4>Personal Experience:</h4>
+  <li> I have not personally worked with Java, but it might be something I learn later. </li>
+
+  <p>PHP:</p>
+  <li>Advantages: Server-side scripting</li>
+  <li>Challenges: Inconsistency</li>
+<h4>Preferences:</h4>
+  <li>Like: useful server-side scripting for the web</li>
+  <li>Avoid: Inconsistent server names</li>
+  <h4>Personal Experience: </h4>
+  <li>I have worked with PHP, I definitely want to learn more PHP. It's a little complicated initially.</li>
+
+  <p>Ruby:</p>
+  <li>Advantages: Elegant syntax</li>
+  <li>Challenges: Slower Execution</li>
+<h4>Preferences:</h4>
+  <li>Like: Clean and concise syntax</li>
+  <li>Avoid: Slower execution compared to some other languages</li>
+  <h4>Personal Experience: </h4>
+  <li>I have never learned this language, I would be interested in learning this.</li>
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Tools required for course completion / Tools of interest for learning</h1>
+  <ul class="incremental">
+  <h2>Frameworks:</h2>
+  <li>ReactJs - 4 mentions</li>
+  <li>Spring-Boot - 1 mention</li>
+  <li>Vue - 1 mention</li>
+  <li>Codeigniter - 1 mention</li>
+  <li>React - 4 mention</li>
+  <li>Angular - 3 mention</li>
+  <li>Django - 10 mention</li>
+  <li>Rails - 1 mention</li>
+  <li>Laravel - 2 mention</li>
+  <li>Flask - 6 mention</li>
+  <li>ASP.NET - 1 mention</li>
+  <li>Bootstrap - 3 mention</li>
+  <li>Next.js - 1 mention</li>
+
+  <p>ReactJs:</p>
+  <li>Advantages: Component-based, Efficient updates</li>
+  <li>Challenges: Steeper learning curve for beginners</li>
+<h4>Preferences:</h4>
+  <li>Like: Enables reusable UI components, great for single-page applications.</li>
+  <li>Avoid: Initial complexity can be overwhelming for new developers.</li>
+  <h4>Personal Experience: </h4>
+  <li>No experience, but I would like to learn.</li>
+
+<p>Spring-Boot:</p>
+  <li>Advantages: Simplifies Java development, Integrated tools</li>
+  <li>Challenges: Requires understanding of Java ecosystem</li>
+<h4>Preferences:</h4>
+  <li>Like: Rapid development, easy configuration.</li>
+  <li>Avoid: Overhead for smaller projects, not suitable for non-Java developers.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have not used Spring-Boot, but I am interested in learning it.</li>
+
+  <p>Vue:</p>
+  <li>Advantages: Simple syntax, Two-way data binding</li>
+  <li>Challenges: Smaller community compared to React or Angular</li>
+<h4>Preferences:</h4>
+  <li>Like: Lightweight, easy integration with existing projects.</li>
+  <li>Avoid: Limited scalability for large applications.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have not used Vue, not very interested but wouldnt mind learning it. </li>
+
+<p>Codeigniter:</p>
+  <li>Advantages: Lightweight, MVC architecture</li>
+  <li>Challenges: Limited built-in features compared to newer frameworks</li>
+<h4>Preferences:</h4>
+  <li>Like: Quick development, suitable for small to medium-sized projects.</li>
+  <li>Avoid: Might not be the best fit for large-scale applications.</li>
+  <h4>Personal Experience: </h4>
+  <li>No experience with this, but seems very interesting.</li>
+
+<p>React:</p>
+  <li>Advantages: Component-based, Efficient updates</li>
+  <li>Challenges: Steeper learning curve for beginners</li>
+<h4>Preferences:</h4>
+  <li>Like: Enables reusable UI components, great for single-page applications.</li>
+  <li>Avoid: Initial complexity can be overwhelming for new developers.</li>
+  <h4>Personal Experience: </h4>
+  <li>I've worked with React on a course project, was a bit complicated. I would like to work more with this.</li>
+
+<p>Angular:</p>
+  <li>Advantages: Powerful, Two-way data binding</li>
+  <li>Challenges: Complex for smaller projects, steeper learning curve</li>
+<h4>Preferences:</h4>
+  <li>Like: Comprehensive framework, great for large-scale applications.</li>
+  <li>Avoid: Overhead for smaller projects, may be challenging for beginners.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have no experience with this but interested, seemed to be popular choice in our class.</li>
+
+<p>Django:</p>
+  <li>Advantages: High-level, Batteries-included framework</li>
+  <li>Challenges: May seem restrictive to some developers</li>
+<h4>Preferences:</h4>
+  <li>Like: Rapid development, follows the DRY (Don't Repeat Yourself) principle.</li>
+  <li>Avoid: Might not be the best fit for projects requiring more flexibility.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have tried using Django, I wasnt able to grasp it. I would like to learn more.</li>
+
+<p>Rails:</p>
+  <li>Advantages: Convention over Configuration, Rapid development</li>
+  <li>Challenges: Learning curve, can be opinionated</li>
+<h4>Preferences:</h4>
+  <li>Like: Quick development, follows best practices.</li>
+  <li>Avoid: Might not suit projects requiring more flexibility in architecture.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have heard about it many times, I would be interested in learning more about this.</li>
+
+<p>Laravel:</p>
+  <li>Advantages: Elegant syntax, Modern PHP framework</li>
+  <li>Challenges: Learning curve for beginners</li>
+<h4>Preferences:</h4>
+  <li>Like: Modern features, developer-friendly.</li>
+  <li>Avoid: Might not be suitable for projects with strict legacy PHP requirements.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have not used this, would be interested in learning more.</li>
+
+<p>Flask:</p>
+  <li>Advantages: Lightweight, Flexible</li>
+  <li>Challenges: Requires more manual configuration for larger projects</li>
+<h4>Preferences:</h4>
+  <li>Like: Quick setup, great for smaller projects.</li>
+  <li>Avoid: May need more effort for scaling larger applications.</li>
+  <h4>Personal Experience: </h4>
+  <li>I've used Flask for some course projects. Highly recommend, worked well for me.</li>
+
+<p>ASP.NET:</p>
+  <li>Advantages: Versatile, Integrated with Microsoft technologies</li>
+  <li>Challenges: Windows-centric, initial setup complexity</li>
+<h4>Preferences:</h4>
+  <li>Like: Seamless integration with Microsoft stack, suitable for enterprise-level applications.</li>
+  <li>Avoid: May not be the best choice for non-Microsoft environments.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have no experience or prior knowledge of this, I would like to learn more.</li>
+
+<p>Bootstrap:</p>
+  <li>Advantages: Responsive design, Pre-styled components</li>
+  <li>Challenges: Common appearance, customization limitations</li>
+<h4>Preferences:</h4>
+  <li>Like: Quick and consistent styling, great for prototyping.</li>
+  <li>Avoid: May not suit projects requiring highly unique designs.</li>
+  <h4>Personal Experience: </h4>
+  <li>I am using this for my capstone, so I would really like to learn more, to help me with my project.</li>
+
+  <p>Next.js:</p>
+  <li>Advantages: Server-side rendering, Automatic code splitting</li>
+  <li>Challenges: Learning curve, complexity for simple projects</li>
+<h4>Preferences:</h4>
+  <li>Like: Server-side rendering, boosts performance.</li>
+  <li>Avoid: Initial learning curve, may be overkill for simple projects.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have never used, but would like to learn more.</li>
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Tools required for course completion / Tools of interest for learning</h1>
+  <ul class="incremental">
+  <h2>Data Sources:</h2>
+  <li>MySQL - 4 mentions</li>
+  <li>SQL - 1 mention</li>
+  <li>NoSQL - 1 mention</li>
+  <li>MongoDB - 1 mention</li>
+  <li>MariaDB - 1 mention</li>
+  <li>SQL Alchemy - 1 mention</li>
+
+  <p>MySQL:</p>
+  <li>Advantages: Reliable, Scalable</li>
+  <li>Challenges: Complex setup for beginners</li>
+<h4>Preferences:</h4>
+  <li>Like: Robust database management, widely used.</li>
+  <li>Avoid: Initial setup complexity, may be overwhelming for simple projects.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have used this a lot for my course projects, I would highly recommend.
+    Can seem complicated at first, but after inital setup it's easy to use. 
+  </li>
+
+<p>SQL:</p>
+  <li>Advantages: Powerful querying, Standardized</li>
+  <li>Challenges: Learning curve for complex queries</li>
+<h4>Preferences:</h4>
+  <li>Like: Standardized language, great for complex data manipulations.</li>
+  <li>Avoid: Learning curve, might be overcomplicated for simple queries.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have not personnly worked with this, but I wouldnt mind to see how it comppares to MySQL.</li>
+
+<p>NoSQL:</p>
+  <li>Advantages: Flexible data modeling, Scalable</li>
+  <li>Challenges: Limited transaction support</li>
+<h4>Preferences:</h4>
+  <li>Like: Ideal for dynamic and evolving data structures.</li>
+  <li>Avoid: Limited transaction support, might not suit projects requiring ACID properties.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have never used this, but I have heard people talk about it. I may be interested in trying this.</li>
+
+<p>MongoDB:</p>
+  <li>Advantages: Schema-less, Scalable</li>
+  <li>Challenges: May not be suitable for complex transactions</li>
+<h4>Preferences:</h4>
+  <li>Like: Flexible schema, excellent for document-based data.</li>
+  <li>Avoid: May not be the best fit for projects requiring complex transactions.</li>
+  <h4>Personal Experience: </h4>
+  <li>No experience, I have heard of it. I would like to learn more.</li>
+
+<p>MariaDB:</p>
+  <li>Advantages: Open-source, Drop-in replacement for MySQL</li>
+  <li>Challenges: Smaller community compared to MySQL</li>
+<h4>Preferences:</h4>
+  <li>Like: Open-source alternative to MySQL, seamless transition.</li>
+  <li>Avoid: Smaller community, may have limited third-party support.</li>
+  <h4>Personal Experience: </h4>
+  <li>Very interested in seeing how this differs from MySQL. I have learned a bit about this.</li>
+
+<p>SQL Alchemy:</p>
+  <li>Advantages: ORM capabilities, Database-agnostic</li>
+  <li>Challenges: Learning curve for beginners</li>
+<h4>Preferences:</h4>
+  <li>Like: ORM features, allows working with multiple database engines.</li>
+  <li>Avoid: Learning curve, might be overkill for simpler projects.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have no experience, but I am interested in learning more.</li>
+
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Tools required for course completion / Tools of interest for learning</h1>
+  <ul class="incremental">
+  <h2>File Transfer Utilities:</h2>
+  <li>Filezilla - 15 mentions</li>
+  <li>WinSCP - 1 mention</li>
+
+  <p>Filezilla:</p>
+  <li>Advantages: User-friendly, Cross-platform</li>
+  <li>Challenges: Interface may seem outdated</li>
+<h4>Preferences:</h4>
+  <li>Like: Easy to use, widely adopted.</li>
+  <li>Avoid: Interface aesthetics, may not suit users preferring a modern look.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have used this before, very simple to work with. Highly recommend.</li>
+
+<p>WinSCP:</p>
+  <li>Advantages: Secure file transfers, Integration with PuTTY</li>
+  <li>Challenges: Windows-centric, fewer features compared to some alternatives</li>
+<h4>Preferences:</h4>
+  <li>Like: Secure transfers, integrates well with PuTTY.</li>
+  <li>Avoid: Windows-centric, may have limited features for advanced users.</li>
+  <h4>Personal Experience: </h4>
+  <li>No experience, I would like to learn more about this.</li>
+
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Tools required for course completion / Tools of interest for learning</h1>
+  <ul class="incremental">
+  <h2>Web Browsers:</h2>
+  <li>Google Chrome - 18 mentions</li>
+  <li>MS Edge - 2 mention</li>
+  <li>Safari - 1 mention</li>
+  <li>Mozilla Firefox - 10 mention</li>
+
+  <p>Google Chrome:</p>
+  <li>Advantages: Fast, Extensive extension support</li>
+  <li>Challenges: Resource-intensive</li>
+<h4>Preferences:</h4>
+  <li>Like: Speed, vast extension ecosystem.</li>
+  <li>Avoid: Resource usage, may impact system performance.</li>
+  <h4>Personal Experience: </h4>
+  <li>I personally work with chrome often. It is one of my goto browsers. </li>
+
+<p>Microsoft Edge:</p>
+  <li>Advantages: Integration with Windows, Privacy features</li>
+  <li>Challenges: Limited extension library compared to Chrome</li>
+<h4>Preferences:</h4>
+  <li>Like: Integration with Windows, privacy-focused features.</li>
+  <li>Avoid: Limited extensions, might not meet specific user needs.</li>
+  <h4>Personal Experience: </h4>
+  <li>I use it frequently on my laptop. Works great but I prefer other browsers more.</li>
+
+<p>Safari:</p>
+  <li>Advantages: Integrated with Apple ecosystem, Energy-efficient</li>
+  <li>Challenges: Limited cross-platform availability</li>
+<h4>Preferences:</h4>
+  <li>Like: Integration with Apple devices, energy efficiency.</li>
+  <li>Avoid: Limited availability on non-Apple platforms.</li>
+  <h4>Personal Experience: </h4>
+  <li>I use this daily onmy iphone. It works perfectly on mac.</li>
+
+<p>Mozilla Firefox:</p>
+  <li>Advantages: Customizable, Open-source</li>
+  <li>Challenges: Memory usage can be high with many tabs</li>
+<h4>Preferences:</h4>
+  <li>Like: Customization options, commitment to open-source.</li>
+  <li>Avoid: Memory usage, particularly with numerous open tabs.</li>
+  <h4>Personal Experience: </h4>
+  <li>I dont use this browser as much as I would like. I will probably try to use it more.</li>
+  
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Tools required for course completion / Tools of interest for learning</h1>
+  <ul class="incremental">
+  <h2>Operating Systems:</h2>
+  <li>Windows - 6 mentions</li>
+  <li>Mac - 2 mention</li>
+
+  <p>Windows:</p>
+  <li>Advantages: Widely compatible, Extensive software support</li>
+  <li>Challenges: Updates can be intrusive, susceptibility to malware</li>
+<h4>Preferences:</h4>
+  <li>Like: Compatibility, vast software library.</li>
+  <li>Avoid: Intrusive updates, potential security vulnerabilities.</li>
+  <h4>Personal Experience: </h4>
+  <li>I prefer windows over Mac when I work on my academics.</li>
+
+<p>Mac:</p>
+  <li>Advantages: Seamless integration with Apple devices, User-friendly</li>
+  <li>Challenges: Limited hardware options, higher cost</li>
+<h4>Preferences:</h4>
+  <li>Like: Integration with Apple ecosystem, user-friendly interface.</li>
+  <li>Avoid: Limited hardware choices, higher upfront cost.</li>
+  <h4>Personal Experience: </h4>
+  <li>I prefer mac for the ecosystem, and how it connects with all of my apple devices.</li>
+
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Tools required for course completion / Tools of interest for learning</h1>
+  <ul class="incremental">
+  <h2>Version Control:</h2>
+  <li>Git - 2 mentions</li>
+  <li>GitHub - 3 mention</li>
+  <li>Gitlab - 1 mentions</li>
+
+  <p>Git:</p>
+  <li>Advantages: Distributed version control, Speed</li>
+  <li>Challenges: Learning curve for beginners</li>
+<h4>Preferences:</h4>
+  <li>Like: Distributed nature, high-speed operations.</li>
+  <li>Avoid: Initial learning curve, may be complex for basic version control needs.</li>
+  <h4>Personal Experience: </h4>
+  <li>I am interested in working with this more for some upcoming projects.</li>
+
+<p>GitHub:</p>
+  <li>Advantages: Social coding, Robust collaboration features</li>
+  <li>Challenges: Limited private repositories for free accounts</li>
+<h4>Preferences:</h4>
+  <li>Like: Social coding, extensive collaboration tools.</li>
+  <li>Avoid: Limitations on private repositories for free accounts.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have used GitHub for majority of my collaborative projects, it is an essential tool when working on team projects. </li>
+
+<p>Gitlab:</p>
+  <li>Advantages: Integrated CI/CD, Free private repositories</li>
+  <li>Challenges: User interface may seem complex</li>
+<h4>Preferences:</h4>
+  <li>Like: Integrated CI/CD, availability of free private repositories.</li>
+  <li>Avoid: User interface complexities for some users.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have no experiene with this, but I would like to learn more and see if I could use this for future projects. </li>
+
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Tools required for course completion / Tools of interest for learning</h1>
+  <ul class="incremental">
+  <h2>Other Tools:</h2>
+  <li>jQuery - 1 mentions</li>
+  <li>Jinja2 template - 1 mention</li>
+  <li>MS Office - 1 mentions</li>
+  <li>Tutorials Point - 1 mentions</li>
+
+  <p>jQuery:</p>
+  <li>Advantages: Simplifies DOM manipulation, Cross-browser compatibility</li>
+  <li>Challenges: Over-reliance may lead to performance issues</li>
+<h4>Preferences:</h4>
+  <li>Like: Simplifies DOM manipulation, ensures cross-browser compatibility.</li>
+  <li>Avoid: Over-reliance, potential performance issues if not used judiciously.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have worked with this very lightly. I would like to learn more of this in this course.</li>
+
+<p>Jinja2 template:</p>
+  <li>Advantages: Powerful templating, Integration with Flask</li>
+  <li>Challenges: Learning curve for beginners</li>
+<h4>Preferences:</h4>
+  <li>Like: Powerful templating, seamless integration with Flask.</li>
+  <li>Avoid: Learning curve, may be overwhelming for those new to templating.</li>
+  <h4>Personal Experience: </h4>
+  <li>I would like to learn more about this, It seems very useful.</li>
+
+<p>MS Office:</p>
+  <li>Advantages: Industry-standard, Comprehensive features</li>
+  <li>Challenges: Cost, Proprietary format concerns</li>
+<h4>Preferences:</h4>
+  <li>Like: Industry-standard, comprehensive suite of features.</li>
+  <li>Avoid: Cost, concerns about proprietary document formats.</li>
+  <h4>Personal Experience: </h4>
+  <li>I feel that this is an essential tool that everyone should learn. There is a so many application uses for this tool.</li>
+
+<p>Tutorials Point:</p>
+  <li>Advantages: Extensive tutorials, Free resources</li>
+  <li>Challenges: Quality of content may vary</li>
+<h4>Preferences:</h4>
+  <li>Like: Extensive tutorials, availability of free resources.</li>
+  <li>Avoid: Quality of content may vary, necessitates supplementary learning materials.</li>
+  <h4>Personal Experience: </h4>
+  <li>I have never used this before, but seems like a useful tool.</li>
+
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Tools required for course completion / Tools of interest for learning</h1>
+  <ul class="incremental">
+  <h2>Visuals of all categories:</h2>
+  <img src="images/Will-Use.png" alt="All tools visual">
+</div>
+
+<div class="section slide level1" id="this">
+  <h1> Links to all tools: </h1>
+  <ul class="incremental">
+    <h2>Code Editors:</h2>
+    <p><a href="https://code.visualstudio.com/">VSCode</a></p>
+    <p><a href="https://notepad-plus-plus.org/">Notepad++</a></p>
+
+    <h2>Programming Languages:</h2>
+    <p><a href="https://www.python.org/">Python</a>: 2</p>
+    <p>HTML: No link</p>
+    <p>JavaScript: No link</p>
+    <p>CSS: No link</p>
+    <p>SQL: No link</p>
+    <p>NoSQL: No link</p>
+    <p><a href="https://www.typescriptlang.org/">TypeScript</a></p>
+    <p><a href="https://www.java.com/">Java</a></p>
+    <p><a href="https://www.php.net/">PHP</a></p>
+    <p><a href="https://www.ruby-lang.org/">Ruby</a></p>
+
+    <h2>Frameworks:</h2>
+    <p><a href="https://reactjs.org/">ReactJs</a></p>
+    <p><a href="https://spring.io/projects/spring-boot">Spring-Boot</a></p>
+    <p><a href="https://vuejs.org/">Vue</a></p>
+    <p><a href="https://codeigniter.com/">Codeigniter</a></p>
+    <p><a href="https://reactjs.org/">React</a></p>
+    <p><a href="https://angular.io/">Angular</a></p>
+    <p><a href="https://www.djangoproject.com/">Django</a></p>
+    <p><a href="https://rubyonrails.org/">Rails</a></p>
+    <p><a href="https://laravel.com/">Laravel</a></p>
+    <p><a href="https://flask.palletsprojects.com/">Flask</a></p>
+    <p><a href="https://dotnet.microsoft.com/apps/aspnet">ASP.NET</a></p>
+    <p><a href="https://getbootstrap.com/">Bootstrap</a></p>
+    <p><a href="https://nextjs.org/">Next.js</a></p>
+
+    <h2>Data Sources:</h2>
+    <p><a href="https://www.mysql.com/">MySQL</a></p>
+    <p>SQL: No link</p>
+    <p>NoSQL: No link</p>
+    <p><a href="https://www.mongodb.com/">MongoDB</a></p>
+    <p><a href="https://mariadb.org/">MariaDB</a></p>
+    <p><a href="https://www.sqlalchemy.org/">SQL Alchemy</a></p>
+
+    <h2>File Transfer Utilities:</h2>
+    <p><a href="https://filezilla-project.org/">Filezilla</a></p>
+    <p><a href="https://winscp.net/">WinSCP</a></p>
+
+    <h2>Web Browsers:</h2>
+    <p><a href="https://www.google.com/chrome/">Google Chrome</a></p>
+    <p><a href="https://www.microsoft.com/edge">MS Edge</a></p>
+    <p><a href="https://www.apple.com/safari/">Safari</a></p>
+    <p><a href="https://www.mozilla.org/firefox/">Mozilla Firefox</a></p>
+
+    <h2>Operating Systems:</h2>
+    <p>Windows: No link</p>
+    <p>MacBook: No link</p>
+
+    <h2>Version Control:</h2>
+    <p><a href="https://git-scm.com/">Git</a></p>
+    <p><a href="https://github.com/">GitHub</a></p>
+    <p><a href="https://about.gitlab.com/">Gitlab</a></p>
+
+    <h2>Other Tools:</h2>
+    <p><a href="https://jquery.com/">jQuery</a></p>
+    <p><a href="https://jinja.palletsprojects.com/">Jinja2 template</a></p>
+    <p><a href="https://www.microsoft.com/en-us/microsoft-365/">MS Office</a></p>
+    <p><a href="https://www.tutorialspoint.com/">Tutorials Point</a></p>
+  
+</div>
+
+<div class="section slide level1" id="questions">
+  <h1>Questions?</h1>
+  <ul class="incremental">
+  <br><br><br><br><br><br><br><br><br>
+  <a class="email" href="mailto:lopezb111@southernct.edu">
+  <ul style=
+    "text-align: right;
+    font-family: Verdana,sans-serif;
+    text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
+    lopezb11@southernct.edu</a><br>
+    <img class="right-side-image" src="images/scsu-logo-compact-blue.png"></ul>
+  </ul>
+</div>
+</body>
+</html>

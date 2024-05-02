@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 7</title>
+    <!-- Map Styling -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <!-- Map Scripting, creates map and map functionalities -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Custom CSS for images and map -->
+    <style>
+        #map { height: 500px; } /* map height */
+        .leaflet-popup-content .info img {
+            width: 150px !important; /* image width */
+            height: 100px !important; /* image height */
+            object-fit: cover !important; /* image fit */
+            border-radius: 4px !important; /* image border radius */
+            display: block !important; /* image display */
+            margin: 10px auto !important; /* image margin */
+        }
+        /* Adds vertical spacing to the selector */
+        .selector { margin-top: 10px; } 
+        /* Ensures Popup content width adjusts automatically to fit content */
+        .leaflet-popup-content { width: auto !important; }
+
+    </style>
+</head>
+<body>
+    <button class="portfolio-btn" onclick="location.href='../index.html'">CSC543 Portfolio</button>
+    <h1>Assignment 7</h1>
+    <h2>Interactive Map</h2>
+    <div id="map"></div> <!-- Map container -->
+    <script>
+        //initializes the map
+        var map = L.map('map').setView([34.0522, -118.2437], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Array that contains the locations and their data
+        var locations = [
+            {
+                coords: [40.7128, -74.0060], // Coordinates, (latitude and longitude)
+                name: "New York",           // Name of the location
+                dates: {    // Historical dates and descriptions, with associated images
+                    '1977-07-13': { description: "The 1977 blackout led to widespread looting and was pivotal in urban policy reform.", image: "./NYC-Blackout.jpg" },
+                    '2001-09-11': { description: "September 11 attacks, a major turning point for global politics and security.", image: "./NYC-911.jpg" },
+                    '2012-10-29': { description: "Hurricane Sandy, causing severe damage and economic impact.", image: "./NYC-Sandy.jpeg" }
+                }
+            },
+            {
+                coords: [35.6895, 139.6917],
+                name: "Tokyo",
+                dates: {
+                    '1923-09-01': { description: "The Great Kanto Earthquake devastated Tokyo, leading to modern reconstruction efforts.", image: "./tokyo-earthquake.jpg" },
+                    '1945-03-10': { description: "The bombing of Tokyo in World War II, one of the most destructive air raids in history.", image: "./tokyo-bombing.jpg" },
+                    '2011-03-11': { description: "Impact of the Great East Japan Earthquake, felt strongly in Tokyo, strongest earthquake in its recorded history.", image: "./tokyo-kanto.jpeg" }
+                }
+            },
+            {
+                coords: [55.9533, -3.1883],
+                name: "Edinburgh",
+                dates: {
+                    '1603-03-24': { description: "The Union of the Crowns under James VI and I.", image: "./Edinburgh-Union.jpg" },
+                    '1745-09-21': { description: "The arrival of Bonnie Prince Charlie and the Jacobite uprising.", image: "./Edinburgh-BPC.jpg" },
+                    '1999-07-01': { description: "The official opening of the Scottish Parliament.", image: "./Edinburgh-Parliament.jpg" }
+                }
+            },
+            {
+                coords: [64.2008, -149.4937],
+                name: "Alaska",
+                dates: {
+                    '1867-03-30': { description: "The Alaska Purchase, where the U.S. acquired Alaska from Russia.", image: "./Alaska-Purchase.jpg" },
+                    '1964-03-27': { description: "The Great Alaska Earthquake, the most powerful in North American history.", image: "./Alaska-Earthquake.jpg" },
+                    '1989-03-24': { description: "The Exxon Valdez oil spill, one of the worst environmental disasters.", image: "./Alaska-OilSpill.jpg" }
+                }
+            },
+            {
+                coords: [26.8206, 30.8025],
+                name: "Egypt",
+                dates: {
+                    '1922-11-04': { description: "The discovery of Tutankhamun's Tomb by Howard Carter.", image: "./Egypt-Tut.jpg" },
+                    '1952-07-23': { description: "The Egyptian Revolution of 1952 led by the Free Officers Movement.", image: "./Egypt-Revolution.jpg" },
+                    '2011-01-25': { description: "The beginning of the Egyptian Revolution of 2011, part of the Arab Spring.", image: "./Egypt-2011.jpg" }
+                }
+            }
+        ];
+        // Iterates through each location and creates a marker and popup
+        locations.forEach(function(location) {
+            var marker = L.marker(location.coords).addTo(map); // Creates the marker and adds to map
+            var popupContent = document.createElement('div'); //Div for pop up content
+            var infoDiv = document.createElement('div');    //Div for displaying the event info
+            var initialDate = Object.keys(location.dates)[0]; // Gets first event date
+            // Sets the content of the popup, shows location name, event description, and image
+            infoDiv.innerHTML = `<h4>${location.name}</h4><p>${location.dates[initialDate].description}</p><img src="${location.dates[initialDate].image}" alt="Historical event image" />`;
+            popupContent.appendChild(infoDiv); // Adds info to the pop up 
+
+            var selector = document.createElement('select'); //Creates the selector for event dates 
+            selector.className = 'selector';
+            // Adds event dates to the selector
+            Object.keys(location.dates).forEach(function(date) {
+                var option = document.createElement('option');
+                option.value = date;
+                option.text = date;
+                selector.appendChild(option);
+            });
+
+            // Changes the event description and image when the date is selected
+            selector.addEventListener('change', function() {
+                // Gets the selected date
+                var selectedDate = location.dates[this.value];
+                // Sets the content of the popup
+                infoDiv.innerHTML = `<h4>${location.name}</h4><p>${selectedDate.description}</p><img src="${selectedDate.image}" alt="Historical event image" />`;
+            });
+
+            // Adds the selector to the popup
+            popupContent.appendChild(selector);
+            // Updates the popup to the marker
+            marker.bindPopup(popupContent);
+        });
+    </script>
+    <div>
+        <h1>References:</h1>
+    <ol>
+        <li>American Experience, PBS. (2021, July 15). The night New York’s lights went out. American Experience | PBS. https://www.pbs.org/wgbh/americanexperience/features/night-new-yorks-lights-went-out/</li>
+        <li>Egypt | History, Map, Flag, Population, & Facts. (2024, April 18). Encyclopedia Britannica. https://www.britannica.com/place/Egypt/The-revolution-and-the-Republic</li>
+        <li>Gibbens, S. (2019, February 11). Hurricane Sandy, explained. Environment. https://www.nationalgeographic.com/environment/article/hurricane-sandy</li>
+        <li>Hammer, J. (2013, November 15). The Great Japan earthquake of 1923. Smithsonian Magazine. https://www.smithsonianmag.com/history/the-great-japan-earthquake-of-1923-1764539/</li>
+        <li>James VI and I. (n.d.). National Museums Scotland. https://www.nms.ac.uk/explore-our-collections/stories/scottish-history-and-archaeology/james-vi-and-i/#:~:text=The%20Union%20of%20the%20Crowns,as%20James%20VI%20and%20I.</li>
+        <li>Leaflet — an open-source JavaScript library for interactive maps. (n.d.). https://leafletjs.com/</li>
+        <li>Milestones: 1866–1898 - Office of the Historian. (n.d.). https://history.state.gov/milestones/1866-1898/alaska-purchase</li>
+        <li>Onion, A. (2023, December 7). Tutankhamun: Tomb, Mummy, Death & Howard Carter | HISTORY. HISTORY. https://www.history.com/topics/ancient-egypt/tutankhamen</li>
+        <li>Sullivan, M. (2024, March 7). Firebombing of Tokyo. HISTORY. https://www.history.com/this-day-in-history/firebombing-of-tokyo</li>
+        <li>The 1964 Great Alaska Earthquake and Tsunami | U.S. Geological Survey. (2024, March 25). https://www.usgs.gov/centers/alaska-science-center/science/1964-great-alaska-earthquake-and-tsunami#:~:text=1964%20Quake%3A%20The%20Great%20Alaska%20Earthquake,-View%20Video&text=On%20March%2027%2C%201964%20at,25%20km)%20beneath%20the%20surface.</li>
+        <li>The Editors of Encyclopaedia Britannica. (2011, February 11). Egypt Uprising of 2011 | Causes, Impact & Legacy. Encyclopedia Britannica. https://www.britannica.com/event/Egypt-Uprising-of-2011</li>
+        <li>The Exxon Valdez, 25 years later. (n.d.). https://oceanservice.noaa.gov/podcast/mar14/mw122-exxonvaldez.html</li>
+        <li>The Scottish Parliament reestablished. (n.d.). Scottish Parliament. https://www.parliament.scot/about/history-of-the-scottish-parliament/the-scottish-parliament-reestablished</li>
+        <li>Tohoku earthquake and tsunami. (n.d.). https://education.nationalgeographic.org/resource/tohoku-earthquake-and-tsunami/</li>
+        <li>Wikipedia contributors. (2024a, April 6). Jacobite rising of 1745. Wikipedia. https://en.wikipedia.org/wiki/Jacobite_rising_of_1745</li>
+        <li>Wikipedia contributors. (2024b, April 18). September 11 attacks. Wikipedia. https://en.wikipedia.org/wiki/September_11_attacks</li>
+    </ol>
+    </div>
+    <div>
+        <h1>Recommendations:</h1>
+        <p>To make the same implementation, I would recommend getting familiar with HTML,CSS, and JavaScript. I would also recommend exploring the Leaflet.js library, as there is a tutorial page that gives instructions on how to implement the interactive map.</p>
+    </div>
+
+    <div>
+        <h1>Questions:</h1>
+        <p>Any feedback or questions, feel free to leave a message on the discussion form on BlackBoard under Assignment7. </p>
+    </div>
+</body>
+</html>

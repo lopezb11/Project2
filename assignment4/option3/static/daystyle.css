@@ -1,0 +1,50 @@
+#converterContainer {
+    background-color: #69656542;  
+    padding: 20px; 
+    border-radius: 10px; 
+    margin: 200px auto; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    width: 50%;
+    color: #000000;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #c6d124;
+}
+
+h2 {
+    color: #000000;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #ccee35;
+    color: #000000;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#resultText {
+    font-size: 18px;
+    font-weight: bold; 
+}

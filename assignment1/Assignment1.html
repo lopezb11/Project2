@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="author" content="Brianna Lopez" />
+  <title>Presentation Assignment 1</title>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="scripts/slidy.css" /> <!-- http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css -->
+  <script src="scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script> <!-- http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js-->
+  <script src="scripts/jquery-3.3.1.min.js"
+    charset="utf-8" type="text/javascript"></script> <!-- https://code.jquery.com/jquery-3.3.1.min.js -->
+  <script type="text/javascript" src="scripts/qrcode.js"></script>
+</head>
+
+<style>
+
+  /* two-colomn layout */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .right-side-image {
+    float: right;
+    width: 300px;
+    border: 0px solid #004480;
+    padding: 10px;
+  }
+
+  /* global properties to apply to all images */
+  .img {
+    float: left;
+  }
+
+  /* qrcode generator image size */
+  #qrcode {
+    width:160px;
+    height:160px;
+    margin-top:15px;
+  }
+
+  /* email link */
+  a.email:link {color:#2f00ff;}
+  a.email:hover {color:#ff00ee; background:#66ff66;}
+
+  .portfolio-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: fixed;  /* Makes the button fixed at a specific location */
+    top: 0;           /* Aligns the button to the top of the viewport */
+    left: 0;          /* Aligns the button to the left of the viewport */
+    z-index: 1000;    /* Ensures the button stays on top of other elements */
+}
+
+.portfolio-btn:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Presentation <br><font color = "#2f00ff"> Assignment 1</font></h1>
+  <p class="author">Brianna Lopez</p>
+  <p class="date">Computer Science Student <br><font color = "#8080FF" style="text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Southern Connecticut State University</font></p>
+  <button id="view-fullscreen">Next Page</button>
+  <button class="portfolio-btn" onclick="location.href='../index.html'">CSC543 Portfolio</button>
+  <script type="text/javascript">
+    (function () {
+        var viewFullScreen = document.getElementById("view-fullscreen");
+        if (viewFullScreen) {
+            viewFullScreen.addEventListener("click", function () {
+                var docElm = document.documentElement;
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen();
+                }
+                else if (docElm.msRequestFullscreen) {
+                    docElm = document.body; //overwrite the element (for IE)
+                    docElm.msRequestFullscreen();
+                }
+                else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen();
+                }
+                else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen();
+                }
+            }, false);
+        }
+
+        var cancelFullScreen = document.getElementById("cancel-fullscreen");
+        if (cancelFullScreen) {
+            cancelFullScreen.addEventListener("click", function () {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                }
+                else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+            }, false);
+        }
+
+        var fullscreenState = document.getElementById("fullscreen-state");
+        if (fullscreenState) {
+            document.addEventListener("fullscreenchange", function () {
+                fullscreenState.innerHTML = (document.fullscreenElement)? "" : "not ";
+            }, false);
+
+            document.addEventListener("msfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.msFullscreenElement)? "" : "not ";
+            }, false);
+
+            document.addEventListener("mozfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.mozFullScreen)? "" : "not ";
+            }, false);
+
+            document.addEventListener("webkitfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.webkitIsFullScreen)? "" : "not ";
+            }, false);
+        }
+
+    })();
+    </script>
+</div>
+
+<div class="section slide level1" id="that">
+  <h1>Previous Experience with web programming:</h1>
+  <ul class="incremental">
+  <li>I have worked on multiple web applications for multiple courses. I have taken Web and Database Development (CSC235) where we use HTML, Javascript, CSS, PHP, MYSQL, and FileZilla. 
+    I have also taken Software Design and Development (CSC330), we used React, Express, Node, Python, HTML, and CSS.
+    I took a Database course (CSC540), where we used Python, Flask, MYSQL.
+  </li>
+  <li>These courses have given me some understanding of web programming concepts, different practices, and some hands on experience. 
+  </ul></li>
+  </ul>
+</div>
+
+<div class="section slide level1" id="alternatives">
+  <h1>How I plan to complete this course?</h1>
+  <ol class="incremental" style="list-style-type: decimal">
+  <h2>These are the tools I plan on using for this course:</h2>
+  <li><p>The code editor I plan on using is Visual Studio Code.</p></li>
+  <li><p>The framework I plan on using is Flask, or possibly Django.</p></li>
+  <li><p>For my data source I will be using MySQL.</p></li>
+  <li><p>For file transfers, I will be using FileZilla.</p></li>
+  <li><p>I will use the Google Chrome web browser.</p></li>
+  <li><p>I will be using Python for backend development.</p></li>
+  </ol></li>
+</div>
+
+<div class="section slide level1" id="alternatives">
+  <h1>Web development frameworks I am interested in exploring?</h1>
+  <ol class="incremental" style="list-style-type: decimal">
+  <li><p>I am interested in possibly working with Django as I have never worked with this framework before. It is a high-level Python web framework, this gives me an opportunity to further develop my programming skills with Python.
+    I think it would be beneficial to challenge myself by working with an unfamiliar framework. 
+  </p></li>
+  </ol></li>
+</div>
+
+<div class="section slide level1" id="alternatives">
+  <h1> Personal or professional projects you are currently working on that may benefit from web programming?</h1>
+  <ol class="incremental" style="list-style-type: decimal">
+  <li><p>I am currently working on my Capstone Project (CSC400) this semester, which will consist of creating a web application for a client. This course could help further the development for this project and help me create a functioning and finalized product.
+    I am personally interested in developing my skills for creating web applications, I think it's useful because it allows me to work with different frameworks as well as different programming languages.</p></li>
+  </ol></li>
+</div>
+
+<div class="section slide level1" id="alternatives">
+  <h1> Resources I recommend for others?</h1>
+  <ol class="incremental" style="list-style-type: decimal">
+  <h2>Some useful resources I recommmend for this course are the following:</h2>
+  <li>Youtube - This is the best resource that can help guide you through any topic or technical issues.</li>
+  <li>w3schools - This website helps with both Frontend and Backend application development.</li>
+  <li>Codeacademy and LeetCode - These websites can help develop programming skills.</li>
+  </ol></li>
+</div>
+
+<div class="section slide level1" id="alternatives">
+  <h1> Summarize what you intend to do with web programming throughout and beyond CSC 543?</h1>
+  <ol class="incremental" style="list-style-type: decimal">
+  <li><p>I intend to use web programming to help me complete the requirements for the CSC543 course. Beyond this course I intend to use these skills for future courses I may take at Southern. I will also use these skills for personal use, I will 
+    continue to challenge myself and create more complex web applications, that I can use to display my skills to future employers. I aim to create applications that showcase my abilities, and to deliver products that I am proud of.
+  </p></li>
+  </ol></li>
+</div>
+
+<div class="section slide level1" id="alternatives">
+  <h1> Citations</h1>
+  <ol class="incremental" style="list-style-type: decimal">
+  <li>Codecademy. (n.d.). Learn to code - for free | Codecademy. https://www.codecademy.com/</li>
+  <li>LeetCode - the worlds leading online programming learning platform. (n.d.). LeetCode. https://leetcode.com/</li>
+  <li>W3Schools online web tutorials. (n.d.). https://www.w3schools.com/</li>
+  <li>YouTube. (n.d.). https://www.youtube.com/</li>
+  </ol></li>
+</div>
+
+<div class="section slide level1" id="questions">
+  <h1>Questions?</h1>
+  <ul class="incremental">
+    <img src="/assignment1/images/questions.jpg" alt="Questions Image">
+  </ul>
+</div>
+</body>
+</html>

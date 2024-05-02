@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #ff5be4;
+}
+
+h1 {
+    color: #ffffff;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #eb12bc;
+    color: #fff;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#resultText {
+    font-size: 18px;
+    font-weight: bold; 
+}
+
+
+#converterContainer {
+    background-color: #69656542;  
+    padding: 20px; 
+    border-radius: 10px; 
+    margin: 200px auto; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    width: 50%;
+    color: #ffffff;
+}
+
+.portfolio-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: fixed;  /* Keeps the button fixed during scrolling */
+    top: 0;           /* Aligns the button to the top of the viewport */
+    right: 0;         /* Aligns the button to the right of the viewport */
+    z-index: 1000;    /* Ensures the button is always on top of other content */
+}
+
+.portfolio-btn:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="Alt-style.css">
+    <title>Alternate Temperature Converter</title>
+</head>
+<body>
+    <button class="portfolio-btn" onclick="location.href='../../index.html'">CSC543 Portfolio</button>
+    <button id="goToMainButton" onclick="goToMainPage()">Go to Main Page</button>
+    <div id="converterContainer">
+        <h1>Alternate Temperature Converter</h1>
+        <form onsubmit="event.preventDefault(); convertTemperature();">
+            <label for="fahrenheit">Enter Degrees Fahrenheit:</label>
+            <input type="text" id="fahrenheit" required>
+            <button type="button" onclick="convertTemperature()">Convert</button>
+        </form>
+        <p id="resultText">Result: </p>
+        <div id="result"></div>
+    </div>
+
+    <script src="converter.js"></script>
+    <script>
+        function goToMainPage() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

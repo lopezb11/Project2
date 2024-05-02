@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <!-- Link to the default CSS file -->
+    <link rel="stylesheet" type="text/css" href="style.css" id="styleLink">
+</head>
+<body>
+    <button class="portfolio-btn" onclick="location.href='../../index.html'">CSC543 Portfolio</button>
+    <div id="converterContainer">
+    <h1>Temperature Converter</h1>
+    <!-- Style Selection Dropdown -->
+    <label for="styleSelector">Select Style:</label>
+    <select id="styleSelector" onchange="changeStyle()">
+        <option value="style.css">Default Style</option>
+        <option value="Alt-style.css">Alternate Style</option>
+    </select>
+    <form onsubmit="event.preventDefault(); convertTemperature();">
+        <label for="fahrenheit">Enter Degrees Fahrenheit:</label>
+        <input type="text" id="fahrenheit" required>
+        <button type="button" onclick="convertTemperature()">Convert</button>
+        <p id="resultText">Result: </p>
+        <div id="result"></div>
+    </form>
+    </div>
+    
+    <script src="converter.js"></script>
+    <script>
+        function changeStyle() {
+            // Get the selected value from the dropdown
+            var selectedStyle = document.getElementById("styleSelector").value;
+            
+            // Change the href attribute of the style link to the selected CSS file
+            document.getElementById("styleLink").setAttribute("href", selectedStyle);
+        }
+    </script>
+</body>
+</html>

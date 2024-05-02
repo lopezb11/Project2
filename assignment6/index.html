@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+
+  <title>Assignment 6</title>
+</head>
+<body>
+  <button class="portfolio-btn" onclick="location.href='../index.html'">CSC543 Portfolio</button>
+  <h1>Project Submission Review</h1>
+  
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Author</th>
+        <th>Project Summary</th>
+        <th>URL</th>
+        <th>CMMI Level</th>
+        <th>TRL Level</th>
+        <th>Recommendations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ian Cheug</td>
+        <td>The project is focusing on the Internet of Things and what operating systems and browsers are used. The goal is to display some images and graphics.</td>
+        <td><a href="https://167.99.253.247/csc543/cheungi1/Project%201/">Link to Project</a></td>
+        <td>Maturity Level 5: Optimizing</td>
+        <td>TRL level 8</td>
+        <td>I suggest giving more background information on the IoT as well as provide the code/documentation needed in order to create the graphs.</td>
+      </tr>
+      <tr>
+        <td>Shafqat Mashrakey</td>
+        <td>This project develops a password checking web app using gameplay elements to see if making security education interactive improves the adoption of strong, unique passwords.</td>
+        <td><a href="https://167.99.253.247/csc543/mashrakeys1/presentation-index/">Link to Project</a></td>
+        <td>Maturity Level 4: Quantitatively Managed</td>
+        <td>TRL level 8</td>
+        <td>I suggest providing the source code for the implementations. Also providing feedback of your experience. Any challenges or recommendations for others who may attempt to replicate this.</td>
+      </tr>
+      <tr>
+        <td>Paulo Muniz</td>
+        <td>This project explores the impact of different web development frameworks on developer productivity and project outcomes. By analyzing Angular, React, and Vue, we aim to provide insights into their performance, developer experience, and scalability.</td>
+        <td><a href="https://167.99.253.247/csc543/munizp1/Project1/Project1.html#(1)">Link to Project</a></td>
+        <td>Maturity Level 5: Optimizing</td>
+        <td>TRL level 9</td>
+        <td>Everything seems well put together and thorough. Great job.</td>
+      </tr>
+      <tr>
+        <td>Eric Miguel</td>
+        <td>The project aims to review different frameworks and compares them to provide details for those deciding on which framework to use for their future implementations.</td>
+        <td><a href="https://167.99.253.247/csc543/miguele1/project/results/">Link to Project</a></td>
+        <td>Maturity Level 5: Optimizing</td>
+        <td>TRL level 9</td>
+        <td>No recommendations, everything was very well documented. Enjoyed looking over your project.</td>
+      </tr>
+      <tr>
+        <td>Q Thompson</td>
+        <td>An API or Application programming interface is a set of rules or protocols that let software applications communicate with each other to exchange data, features, and functionality. The purpose of this Project is to demonstrate different APIs and explain the complexities of each one and what the security risk is for each type of API.</td>
+        <td><a href="https://167.99.253.247/csc543/thompsonq4/index.html">Link to Project</a></td>
+        <td>Maturity Level 5: Optimizing</td>
+        <td>TRL level 8</td>
+        <td>I suggest adding instructions to implement these APIs, so others can follow your steps. Also, maybe talk about your experience with the project, your recommendations.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="button-container">
+    <a href="A6.csv" download class="button">Download CSV File</a>
+    <a href="A6.zip" download class="button">Download ZIP File</a>
+    <label for="enableTTS">Enable Text-to-Speech for Review Table</label>
+    <input type="checkbox" id="enableTTS" onchange="toggleTextToSpeech()">
+  </div>
+
+  <script>
+    var projects = document.querySelectorAll('tbody tr');
+
+    // Function to toggle text-to-speech
+    function toggleTextToSpeech() {
+      var enableTTS = document.getElementById("enableTTS").checked;
+
+      if (enableTTS) {
+        speakProjects();
+      } else {
+        speechSynthesis.cancel(); // Stop speaking
+      }
+    }
+
+    // Function to read each project submission using text-to-speech
+    function speakProjects() {
+      var index = 0;
+
+      function speakNextProject() {
+        var project = projects[index];
+        if (project) {
+          var author = project.querySelector('td:nth-child(1)').textContent;
+          var summary = project.querySelector('td:nth-child(2)').textContent;
+          var url = project.querySelector('td:nth-child(3)').textContent;
+          var cmmi = project.querySelector('td:nth-child(4)').textContent;
+          var trl = project.querySelector('td:nth-child(5)').textContent;
+          var recommendations = project.querySelector('td:nth-child(6)').textContent;
+
+          var utterance = new SpeechSynthesisUtterance(author);
+          utterance.onend = function() {
+            var summaryUtterance = new SpeechSynthesisUtterance(summary);
+            summaryUtterance.onend = function() {
+              var urlUtterance = new SpeechSynthesisUtterance("Link to Project");
+              urlUtterance.onend = function() {
+                var cmmiUtterance = new SpeechSynthesisUtterance(cmmi);
+                cmmiUtterance.onend = function() {
+                  var trlUtterance = new SpeechSynthesisUtterance(trl);
+                  trlUtterance.onend = function() {
+                    var recommendationsUtterance = new SpeechSynthesisUtterance(recommendations);
+                    recommendationsUtterance.onend = function() {
+                      index++;
+                      speakNextProject();
+                    };
+                    speechSynthesis.speak(recommendationsUtterance);
+                  };
+                  speechSynthesis.speak(trlUtterance);
+                };
+                speechSynthesis.speak(cmmiUtterance);
+              };
+              speechSynthesis.speak(urlUtterance);
+            };
+            speechSynthesis.speak(summaryUtterance);
+          };
+          speechSynthesis.speak(utterance);
+        }
+      }
+
+      speakNextProject();
+    }
+  </script>
+
+<div>
+  <h2> References </h2>
+  <ol>
+      <li>SpeechSynthesis - Web APIs | MDN. (2023, March 3). MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis</li>
+      <li>Steve Griffith - Prof3ssorSt3v3. (2023, April 13). Intro to web Text to speech [Video]. YouTube. https://www.youtube.com/watch?v=-EG7O44dIbA</li>
+  </ol>
+</div>
+</body>
+</html>

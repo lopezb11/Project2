@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <button class="portfolio-btn" onclick="location.href='../../index.html'">CSC543 Portfolio</button>
+    <div id="converterContainer">
+    <h1>Temperature Converter</h1>
+    <form onsubmit="event.preventDefault(); convertTemperature();">
+        <label for="fahrenheit">Enter Degrees Fahrenheit:</label>
+        <input type="text" id="fahrenheit" required>
+        <button type="button" onclick="convertTemperature()">Convert</button>
+        <p id="resultText">Result: </p>
+        <div id="result"></div>
+    </form>
+    </div>
+    
+    <script src="converter.js"></script>
+    
+</body>
+</html>

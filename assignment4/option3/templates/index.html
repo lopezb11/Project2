@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Converter</title>
+    <script>
+    
+        function getDynamicCSS() {
+            var currentTime = new Date().getHours();
+            var cssFile;
+
+            if (currentTime >= 6 && currentTime < 18) {
+                cssFile = "daystyle.css";
+            } else {
+                cssFile = "nightstyle.css";
+            }
+
+            var linkElement = document.getElementById("dynamicCSS");
+            linkElement.href = "{{ url_for('static', filename='') }}" + cssFile;
+        }
+
+        window.onload = getDynamicCSS;
+
+        function handleFormSubmit(event) {
+            event.preventDefault(); 
+
+            var fahrenheitInput = document.getElementById("fahrenheit");
+            var fahrenheit = parseFloat(fahrenheitInput.value);
+
+            if (isNaN(fahrenheit)) {
+                alert("Please enter a valid number for degrees Fahrenheit.");
+                return;
+            }
+
+            var celsius = (fahrenheit - 32) * (5 / 9);
+
+            var resultContainer = document.getElementById("result");
+            resultContainer.innerHTML = fahrenheit + " degrees Fahrenheit is " + celsius.toFixed(2) + " degrees Celsius.";
+        }
+    </script>
+</head>
+<body>
+    <div class="converterContainer" id="converterContainer"> 
+        <h2>Temperature Converter</h2>
+        <form onsubmit="handleFormSubmit(event)"> 
+            <label for="fahrenheit">Enter degrees Fahrenheit:</label>
+            <input type="text" id="fahrenheit" name="fahrenheit" required>
+            <button type="submit">Convert</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <link id="dynamicCSS" rel="stylesheet" type="text/css" href="">
+</body>
+</html>

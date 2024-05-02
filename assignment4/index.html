@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="author" content="Brianna Lopez" />
+  <title>Assignment 4</title>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="scripts/slidy.css" /> <!-- http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css -->
+  <script src="scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script> <!-- http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js-->
+  <script src="scripts/jquery-3.3.1.min.js"
+    charset="utf-8" type="text/javascript"></script> <!-- https://code.jquery.com/jquery-3.3.1.min.js -->
+  <script type="text/javascript" src="scripts/qrcode.js"></script>
+</head>
+
+<style>
+
+  /* two-colomn layout */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .right-side-image {
+    float: right;
+    width: 300px;
+    border: 0px solid #004480;
+    padding: 10px;
+  }
+
+  /* global properties to apply to all images */
+  .img {
+    float: left;
+  }
+
+  /* qrcode generator image size */
+  #qrcode {
+    width:160px;
+    height:160px;
+    margin-top:15px;
+  }
+
+  /* email link */
+  a.email:link {color:#eeff00;}
+  a.email:hover {color:#ff00ee; background:#66ff66;}
+
+  .portfolio-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: fixed;  /* Makes the button fixed at a specific location */
+    top: 0;           /* Aligns the button to the top of the viewport */
+    left: 0;          /* Aligns the button to the left of the viewport */
+    z-index: 1000;    /* Ensures the button stays on top of other elements */
+}
+
+.portfolio-btn:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Presentation <br><font color = "#000080"> Assignment 4</font></h1>
+  <p class="author">Brianna Lopez</p>
+  <p class="date">Computer Science Student <br><font color = "#8080FF" style="text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Southern Connecticut State University</font></p>
+  <button id="view-fullscreen">*</button>
+  <button class="portfolio-btn" onclick="location.href='../index.html'">CSC543 Portfolio</button>
+  <script type="text/javascript">
+    (function () {
+        var viewFullScreen = document.getElementById("view-fullscreen");
+        if (viewFullScreen) {
+            viewFullScreen.addEventListener("click", function () {
+                var docElm = document.documentElement;
+                if (docElm.requestFullscreen) {
+                    docElm.requestFullscreen();
+                }
+                else if (docElm.msRequestFullscreen) {
+                    docElm = document.body; //overwrite the element (for IE)
+                    docElm.msRequestFullscreen();
+                }
+                else if (docElm.mozRequestFullScreen) {
+                    docElm.mozRequestFullScreen();
+                }
+                else if (docElm.webkitRequestFullScreen) {
+                    docElm.webkitRequestFullScreen();
+                }
+            }, false);
+        }
+
+        var cancelFullScreen = document.getElementById("cancel-fullscreen");
+        if (cancelFullScreen) {
+            cancelFullScreen.addEventListener("click", function () {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+                else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                }
+                else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+            }, false);
+        }
+
+        var fullscreenState = document.getElementById("fullscreen-state");
+        if (fullscreenState) {
+            document.addEventListener("fullscreenchange", function () {
+                fullscreenState.innerHTML = (document.fullscreenElement)? "" : "not ";
+            }, false);
+
+            document.addEventListener("msfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.msFullscreenElement)? "" : "not ";
+            }, false);
+
+            document.addEventListener("mozfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.mozFullScreen)? "" : "not ";
+            }, false);
+
+            document.addEventListener("webkitfullscreenchange", function () {
+                fullscreenState.innerHTML = (document.webkitIsFullScreen)? "" : "not ";
+            }, false);
+        }
+
+    })();
+    </script>
+</div>
+
+
+<div class="section slide level1" id="alternatives">
+    <h1>Assignment Options:</h1>
+    <h2>Temperature Converter Tasks / Outcomes :</h2>
+    <ol class="incremental" style="list-style-type: decimal">
+        <p>Option 1: Create two HTML files, each with a dedicated CSS file. 
+        <p>Option 2: Create one HTML file with a mechanism to enable a visitor to select the CSS file to use. 
+        <p>Option 3: Create one HTML file with a mechanism to automatically select the CSS file to use based on current time. 
+        <p> To see each options functionality I provided a zip file with the source codes. I also provided my server sided code in plaintext you can see it listed as " app.txt " in each of the Option folders.</p>
+        <p>Download Source Code: <a href="assignment4.zip" download>Click here</a></p>
+        <h4>Similarities:</h4>
+        <p>All 3 options have the same purpose, to convert temperatures.</p>
+        <p>All 3 options use Python and Flask.</p>
+        <p>All 3 options utilize HTML structure for the web pages.</p>
+        <h4>Differences:</h4>
+        <p>File Structure differences, Option 1 uses 2 HTMl files, each with it's own CSS file. Option 2 uses one HTML file, and has a mechanism for the user to select the CSS file. Option 3 The CSS file is selected dynamically based on the time of day.</p>
+        <p>Styling / User Interactions: Option 1 Users have to navigate betweeb 2 HTML files with seperate CSS files. This is a Static styling with chosen choices. Option 2, the User can decide on the desired CSS file. This would be User initiated dynamic  styling.
+          Lastly Option 3, The styling is based on the time of day. This is a time-dependent dynamic styling.
+        </p>
+  </div>
+
+<div class="section slide level1" id="alternatives">
+  <h1>Requirement 3:</h1>
+  <ol class="incremental" style="list-style-type: decimal">
+
+  <h4>Describe your data backup strategy for your CSC 543 coursework.</h4>  
+  <p> For my data backup strategy, I used the 3-2-1 rule, which consists of: 3 copies of my critical files, one primary and two backups. 2 different media types, I used two different storage media types this consists of a local and remote storage. This way i can access it from cloud storage or local machine if I need it.
+    1 offsite copy, to ensure data recovery, I stored a copy of the backup on my laptop, that way it can be away from my primary computer and home.
+  </p>
+
+  <h4>Summarize your effort, in a way someone else might repeat, to complete this assignment.</h4>  
+  <p>To complete this assignment, I followed the given directions. I created a temperature converter web application using Flask. I ran pip install flask in my VS code terminal. I created 3 folders for each option. Next, I created 2 folders in each option folder: templates and static folders. Inside the templates folders are my html files. Inside the static folders are my css files. 
+    Inside each of my Option folders I have an app.py file that serves as the Flask application. The "app.py" files define my routes, handled form submissions, and renders HTML templates with dynamic data.
+    Lastly, I ran the flask application in the terminal by cd into the desired option folder then using the command python app.py , this runs the application for the desired options.  </p>
+
+  <h1>References:</h1>
+  <ol class="incremental" style="list-style-type: decimal">
+    <li>CSS: Cascading Style Sheets | MDN. (2024, January 30). MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/CSS</li>
+    <li>HTML: HyperText Markup Language | MDN. (2023, July 17). MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/html</li>
+    <li>JavaScript | MDN. (2023, September 25). MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/javascript</li>
+    <li>Python program to convert Celsius to Fahrenheit (and Fahrenheit to Celsius). (n.d.). Tutorials Freak. https://www.tutorialsfreak.com/python-tutorial/examples/celsius-fahrenheit-conversion-program-python</li>
+  </ol></li>
+</div>
+
+<div class="section slide level1" id="alternatives">
+  <h1>My Experience / Feedback</h1>
+  <ol class="incremental" style="list-style-type: decimal">
+    <img src="CSC543-A4.PNG" alt="Experience">
+</div>
